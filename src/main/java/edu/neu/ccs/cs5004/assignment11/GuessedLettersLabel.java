@@ -1,13 +1,12 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
 /**
  * Created by Jeremy on 4/8/17.
  */
-public class GuessedLettersLabel extends JLabel {
+public class GuessedLettersLabel extends GameInfoLabel {
     private static final String GUESSED_COLOR = "blue";
     private static final String UNGUESSED_COLOR = "gray";
 
@@ -18,6 +17,7 @@ public class GuessedLettersLabel extends JLabel {
         setBackground(Color.white);
     }
 
+    @Override
     public void update(GameState game) {
         this.setText(htmlFlavoredText(game.getGuessedLetters()));
     }

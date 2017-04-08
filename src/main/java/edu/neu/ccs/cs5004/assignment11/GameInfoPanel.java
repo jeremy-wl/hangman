@@ -1,6 +1,8 @@
 package edu.neu.ccs.cs5004.assignment11;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,20 +11,20 @@ import java.util.Observer;
  */
 public class GameInfoPanel extends JPanel implements Observer {
     private GameState game;
-    private SecretWordLabel secretWordLabel;
-    private GuessedLettersLabel guessedLettersLabel;
-    private GuessesLeftLabel guessesLeftLabel;
+    private List<GameInfoLabel> labels;
 
     GameInfoPanel(GameState game, SecretWordLabel secretWordLabel,
                   GuessesLeftLabel guessesLabel, GuessedLettersLabel letterLabel) {
-        this.secretWordLabel = secretWordLabel;
-        this.guessesLeftLabel = guessesLabel;
-        this.guessedLettersLabel = letterLabel;
         this.game = game;
 
-        this.add(secretWordLabel);
-        this.add(guessesLeftLabel);
-        this.add(guessedLettersLabel);
+        labels = new ArrayList<>();
+        labels.add(secretWordLabel);
+        labels.add(guessesLabel);
+        labels.add(letterLabel);
+
+        for (JLabel label : labels) {
+            this.add(label);
+        }
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -31,8 +33,8 @@ public class GameInfoPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable obj, Object arg) {
-        this.secretWordLabel.update(game);
-        this.guessesLeftLabel.update(game);
-        this.guessedLettersLabel.update(game);
+        for (GameInfoLabel label : labels) {
+            label.update(game);
+        }
     }
 }

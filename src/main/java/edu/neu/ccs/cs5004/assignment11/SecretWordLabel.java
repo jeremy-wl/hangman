@@ -1,13 +1,11 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
 
 /**
  * Created by Jeremy on 4/8/17.
  */
-class SecretWordLabel extends JLabel {
+class SecretWordLabel extends GameInfoLabel {
 
     public SecretWordLabel(GameState game) {
         super();
@@ -22,6 +20,7 @@ class SecretWordLabel extends JLabel {
         this.setText(secretString.toString());
     }
 
+    @Override
     public void update(GameState game) {
         StringBuilder secretString = new StringBuilder();
 
