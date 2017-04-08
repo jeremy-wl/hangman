@@ -13,7 +13,7 @@ public class GuessedLetterLabel extends JLabel {
 
     public GuessedLetterLabel(GameState game) {
         super();
-        setPreferredSize( new Dimension( 300, 100 ) );
+        setPreferredSize(new Dimension(300, 100));
         this.setText(htmlFlavoredText(game.getGuessedWordMap()));
         setBackground(Color.white);
     }

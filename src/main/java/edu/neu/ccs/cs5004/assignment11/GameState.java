@@ -8,7 +8,7 @@ import java.util.*;
 class GameState extends Observable {
     private Map<Character, Boolean> secretWordLetters;
     private Map<Character, Boolean> guessedLetters;
-    private int numOfGuessesLeft;
+    private int guessesLeft;
     private String[] possibleWords;
     private String currentWord;
     static final String ALL_POSSIBLE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
@@ -20,6 +20,10 @@ class GameState extends Observable {
 
     void guessed(char c) {
         if (!Character.isLetter(c)) return;
+
+        // One letter key = one guess, unless a player had hit the same key before
+        if (!guessedLetters.get(c)) guessesLeft--;
+
         guessedLetters.put(c, true);
         setChanged();
         notifyObservers();
@@ -29,13 +33,17 @@ class GameState extends Observable {
         return guessedLetters;
     }
 
+    int getGuessesLeft() {
+        return guessesLeft;
+    }
+
     /***************************** Private Methods *****************************/
 
     private void resetGame() {
         currentWord = randomWord(possibleWords);
         secretWordLetters = stringToCharMap(currentWord);
         guessedLetters = stringToCharMap(ALL_POSSIBLE_LETTERS);
-        numOfGuessesLeft = currentWord.length();
+        guessesLeft = currentWord.length();
     }
 
     private String randomWord(String[] possibleWords) {

@@ -1,7 +1,6 @@
 package edu.neu.ccs.cs5004.assignment11;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,28 +9,28 @@ import java.util.Observer;
  */
 public class GameInfoPanel extends JPanel implements Observer {
     private GameState game;
-    private GuessedLetterLabel guessedLetters;
+    private GuessedLetterLabel guessedLetterLabel;
+    private GuessesLeftLabel guessesLeftLabel;
 //    private JLabel secretLetters;
-//    private JLabel numOfGuesses;
 
-    /**
-     * Create a new buffered JPanel with the specified layout manager
-     *
-     * @param layout the LayoutManager to use
-     */
-    public GameInfoPanel(LayoutManager layout, GameState game,
-                         GuessedLetterLabel guessedLetters) {
-        super(layout);
+    GameInfoPanel(GameState game,
+                  GuessedLetterLabel letterLabel, GuessesLeftLabel guessesLabel) {
 //        this.secretLetters = secretLetters;
-//        this.numOfGuesses = numOfGuesses;
-        this.guessedLetters = guessedLetters;
+        this.guessedLetterLabel = letterLabel;
+        this.guessesLeftLabel = guessesLabel;
         this.game = game;
-        this.add(guessedLetters);
+
+        this.add(guessesLeftLabel);
+        this.add(guessedLetterLabel);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         game.addObserver(this);
     }
 
     @Override
     public void update(Observable obj, Object arg) {
-        this.guessedLetters.update(game);
+        this.guessedLetterLabel.update(game);
+        this.guessesLeftLabel.update(game);
     }
 }

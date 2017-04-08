@@ -35,8 +35,9 @@ public class HangmanGame {
         manager.addKeyEventDispatcher(new MyKeyEventDispatcher());
 
         GuessedLetterLabel guessedLetterLabel = new GuessedLetterLabel(game);
+        GuessesLeftLabel guessesLeftLabel = new GuessesLeftLabel(game);
 
-        JPanel gameInfoPanel = new GameInfoPanel(new FlowLayout(), game, guessedLetterLabel);
+        JPanel gameInfoPanel = new GameInfoPanel(game, guessedLetterLabel, guessesLeftLabel);
 
         frame.add(gameInfoPanel);
 
