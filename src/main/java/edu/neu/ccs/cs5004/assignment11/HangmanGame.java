@@ -34,9 +34,11 @@ public class HangmanGame {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyKeyEventDispatcher());
 
+        GuessedLetterLabel guessedLetterLabel = new GuessedLetterLabel(game);
 
-        JPanel guessedWordDisplay = new GuessedLetterDisplay(game);
-        frame.add(guessedWordDisplay);
+        JPanel gameInfoPanel = new GameInfoPanel(new FlowLayout(), game, guessedLetterLabel);
+
+        frame.add(gameInfoPanel);
 
         frame.pack();
         frame.setVisible(true);

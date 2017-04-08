@@ -3,34 +3,23 @@ package edu.neu.ccs.cs5004.assignment11;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by Jeremy on 4/8/17.
  */
-public class GuessedLetterDisplay extends JPanel implements Observer {
-    private GameState game;
-    private JLabel guessWordLabel;
+public class GuessedLetterLabel extends JLabel {
     private static final String GUESSED_COLOR = "blue";
     private static final String UNGUESSED_COLOR = "gray";
 
-    public GuessedLetterDisplay(GameState game) {
+    public GuessedLetterLabel(GameState game) {
         super();
-        this.game = game;
         setPreferredSize( new Dimension( 300, 100 ) );
-        guessWordLabel = new JLabel(htmlFlavoredText(game.getGuessedWordMap()));
-        add(guessWordLabel);
-        game.addObserver(this);
+        this.setText(htmlFlavoredText(game.getGuessedWordMap()));
         setBackground(Color.white);
     }
 
-    @Override
-    public void update(Observable obj, Object arg) {
-        guessWordLabel = new JLabel(htmlFlavoredText(game.getGuessedWordMap()));
-        remove(0);              // remove old label
-        add(guessWordLabel);    // add new label
-        revalidate();           // repaint with the new label
+    public void update(GameState game) {
+        this.setText(htmlFlavoredText(game.getGuessedWordMap()));
     }
 
     /***************************** Private Methods *****************************/
