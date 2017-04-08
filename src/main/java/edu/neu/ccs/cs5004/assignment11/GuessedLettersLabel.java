@@ -7,19 +7,19 @@ import java.util.Map;
 /**
  * Created by Jeremy on 4/8/17.
  */
-public class GuessedLetterLabel extends JLabel {
+public class GuessedLettersLabel extends JLabel {
     private static final String GUESSED_COLOR = "blue";
     private static final String UNGUESSED_COLOR = "gray";
 
-    public GuessedLetterLabel(GameState game) {
+    public GuessedLettersLabel(GameState game) {
         super();
         setPreferredSize(new Dimension(300, 100));
-        this.setText(htmlFlavoredText(game.getGuessedWordMap()));
+        this.setText(htmlFlavoredText(game.getGuessedLetters()));
         setBackground(Color.white);
     }
 
     public void update(GameState game) {
-        this.setText(htmlFlavoredText(game.getGuessedWordMap()));
+        this.setText(htmlFlavoredText(game.getGuessedLetters()));
     }
 
     /***************************** Private Methods *****************************/

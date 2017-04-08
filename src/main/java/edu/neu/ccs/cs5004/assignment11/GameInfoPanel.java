@@ -9,19 +9,20 @@ import java.util.Observer;
  */
 public class GameInfoPanel extends JPanel implements Observer {
     private GameState game;
-    private GuessedLetterLabel guessedLetterLabel;
+    private SecretWordLabel secretWordLabel;
+    private GuessedLettersLabel guessedLettersLabel;
     private GuessesLeftLabel guessesLeftLabel;
-//    private JLabel secretLetters;
 
-    GameInfoPanel(GameState game,
-                  GuessedLetterLabel letterLabel, GuessesLeftLabel guessesLabel) {
-//        this.secretLetters = secretLetters;
-        this.guessedLetterLabel = letterLabel;
+    GameInfoPanel(GameState game, SecretWordLabel secretWordLabel,
+                  GuessesLeftLabel guessesLabel, GuessedLettersLabel letterLabel) {
+        this.secretWordLabel = secretWordLabel;
         this.guessesLeftLabel = guessesLabel;
+        this.guessedLettersLabel = letterLabel;
         this.game = game;
 
+        this.add(secretWordLabel);
         this.add(guessesLeftLabel);
-        this.add(guessedLetterLabel);
+        this.add(guessedLettersLabel);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -30,7 +31,8 @@ public class GameInfoPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable obj, Object arg) {
-        this.guessedLetterLabel.update(game);
+        this.secretWordLabel.update(game);
         this.guessesLeftLabel.update(game);
+        this.guessedLettersLabel.update(game);
     }
 }

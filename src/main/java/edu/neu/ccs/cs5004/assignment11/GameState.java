@@ -10,7 +10,7 @@ class GameState extends Observable {
     private Map<Character, Boolean> guessedLetters;
     private int guessesLeft;
     private String[] possibleWords;
-    private String currentWord;
+    private String secretWord;
     static final String ALL_POSSIBLE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
 
     GameState(String filePath) {
@@ -29,7 +29,11 @@ class GameState extends Observable {
         notifyObservers();
     }
 
-    Map<Character, Boolean> getGuessedWordMap() {
+    Map<Character, Boolean> getSecretWordLetters() {
+        return secretWordLetters;
+    }
+
+    Map<Character, Boolean> getGuessedLetters() {
         return guessedLetters;
     }
 
@@ -37,13 +41,17 @@ class GameState extends Observable {
         return guessesLeft;
     }
 
+    public String getSecretWord() {
+        return secretWord;
+    }
+
     /***************************** Private Methods *****************************/
 
     private void resetGame() {
-        currentWord = randomWord(possibleWords);
-        secretWordLetters = stringToCharMap(currentWord);
+        secretWord = randomWord(possibleWords);
+        secretWordLetters = stringToCharMap(secretWord);
         guessedLetters = stringToCharMap(ALL_POSSIBLE_LETTERS);
-        guessesLeft = currentWord.length();
+        guessesLeft = secretWord.length();
     }
 
     private String randomWord(String[] possibleWords) {
