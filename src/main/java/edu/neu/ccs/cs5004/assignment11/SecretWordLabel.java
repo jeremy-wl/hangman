@@ -1,6 +1,5 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -9,7 +8,9 @@ import java.awt.*;
 class SecretWordLabel extends GameInfoLabel {
 
     public SecretWordLabel(GameState game) {
-        setPreferredSize(new Dimension(500, 100));
+        setPreferredSize(new Dimension(400, 20));
+        this.setFont(new Font("Monospaced", Font.BOLD, 15));
+
 
         StringBuilder secretString = new StringBuilder();
         for (int i = 0; i < game.getSecretWord().length(); i++) {

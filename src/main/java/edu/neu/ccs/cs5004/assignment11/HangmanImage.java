@@ -8,30 +8,28 @@ import java.util.Observer;
 /**
  * Created by Jeremy on 4/8/17.
  */
-class HangmanImage extends JLabel implements Observer {
-    private static final int IMG_WIDTH  = 400;
-    private static final int IMG_HEIGHT = 504;
+class HangmanImage extends JPanel implements Observer {
 
     private GameState game;
     private HangmanImageLibrary imageLibrary;
 
     HangmanImage(GameState game) {
         this.game = game;
-        this.imageLibrary = new HangmanImageLibrary();
 
-        this.setIcon(getScaledImageIcon(IMG_WIDTH, IMG_HEIGHT, GameState.MAX_GUESSES_ALLOWED));
+        this.imageLibrary = new HangmanImageLibrary();
+        this.setPreferredSize(new Dimension(400, 504));  // TODO: fix all magic numbers
         this.game.addObserver(this);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        this.setIcon(getScaledImageIcon(IMG_WIDTH, IMG_HEIGHT, game.getGuessesLeft()));
+        repaint();
     }
 
-    private ImageIcon getScaledImageIcon(int width, int height, int guessesLeft) {
-        ImageIcon imgIcon = imageLibrary.getHangmanImage(guessesLeft);
-        Image image = imgIcon.getImage();
-        Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        return new ImageIcon(scaledImage);
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(imageLibrary.getHangmanImage(game.getGuessesLeft()).getImage(),
+                0, 0, this.getWidth(), this.getHeight(), this);  // TODO: refactor this
     }
 }

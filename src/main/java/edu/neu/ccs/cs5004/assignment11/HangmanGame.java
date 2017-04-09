@@ -37,7 +37,7 @@ public class HangmanGame implements ActionListener {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyKeyEventDispatcher());
 
-        JLabel hangmanImage = new HangmanImage(game);
+        JPanel hangmanImage = new HangmanImage(game);
         frame.add(hangmanImage);
 
         GameInfoLabel secretWordLabel = new SecretWordLabel(game);
