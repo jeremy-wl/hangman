@@ -7,7 +7,7 @@ import java.util.*;
  */
 class GameState extends Observable {
     static final String ALL_POSSIBLE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
-    static final int MAX_GUESSES_ALLOWED = 20;  // TODO: set back to 6 as per the spec
+    static final int MAX_GUESSES_ALLOWED = 6;
 
     private Map<Character, Boolean> secretWordLetters;
     private Map<Character, Boolean> guessedLetters;

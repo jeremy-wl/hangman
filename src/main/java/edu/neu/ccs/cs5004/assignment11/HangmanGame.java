@@ -17,7 +17,7 @@ public class HangmanGame implements ActionListener {
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_TYPED) {
                 char pressedKey = e.getKeyChar();
-                System.out.printf("You pressed %s \n", pressedKey);
+                System.out.printf("You pressed %s \n", pressedKey);  // TODO: remove this line
                 game.guessed(pressedKey);
             }
             return false;
@@ -37,17 +37,18 @@ public class HangmanGame implements ActionListener {
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyKeyEventDispatcher());
 
+        JLabel hangmanImage = new HangmanImage(game);
+        frame.add(hangmanImage);
+
         GameInfoLabel secretWordLabel = new SecretWordLabel(game);
         GameInfoLabel guessedLettersLabel = new GuessedLettersLabel(game);
         GameInfoLabel guessesLeftLabel = new GuessesLeftLabel(game);
-
         JPanel gameInfoPanel = new GameInfoPanel(game, secretWordLabel, guessesLeftLabel, guessedLettersLabel);
         frame.add(gameInfoPanel);
 
         JButton newGameBtn = new JButton("New");
         newGameBtn.setActionCommand("New Game");
         newGameBtn.addActionListener(this);
-
         frame.add(newGameBtn);
 
         frame.pack();
