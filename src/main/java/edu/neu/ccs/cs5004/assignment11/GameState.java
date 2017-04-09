@@ -7,7 +7,7 @@ import java.util.*;
  */
 class GameState extends Observable {
     static final String ALL_POSSIBLE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
-    static final int MAX_GUESSES_ALLOWED = 6;
+    static final int MAX_GUESSES_ALLOWED = 20;  // TODO: set back to 6 as per the spec
 
     private Map<Character, Boolean> secretWordLetters;
     private Map<Character, Boolean> guessedLetters;
@@ -24,10 +24,20 @@ class GameState extends Observable {
 
     void guessed(char c) {
         // One letter key = one guess, unless a player had hit the same key before
-        if (lost() || !Character.isLetter(c) || guessedLetters.get(c)) return;
+        if (wins() || lost() || !Character.isLetter(c) || guessedLetters.get(c)) return;
         guessesLeft--;
         guessedLetters.put(c, true);
         if (secretWordLetters.containsKey(c))   lettersAwayFromVictory--;
+        setChanged();
+        notifyObservers();
+    }
+
+    void resetGame() {
+        secretWord = randomWord(possibleWords);
+        secretWordLetters = stringToCharMap(secretWord);
+        guessedLetters = stringToCharMap(ALL_POSSIBLE_LETTERS);
+        guessesLeft = MAX_GUESSES_ALLOWED;
+        lettersAwayFromVictory = secretWordLetters.size();
         setChanged();
         notifyObservers();
     }
@@ -61,14 +71,6 @@ class GameState extends Observable {
     }
 
     /***************************** Private Methods *****************************/
-
-    private void resetGame() {
-        secretWord = randomWord(possibleWords);
-        secretWordLetters = stringToCharMap(secretWord);
-        guessedLetters = stringToCharMap(ALL_POSSIBLE_LETTERS);
-        guessesLeft = MAX_GUESSES_ALLOWED;
-        lettersAwayFromVictory = secretWordLetters.size();
-    }
 
     private String randomWord(String[] possibleWords) {
         Random random = new Random();
