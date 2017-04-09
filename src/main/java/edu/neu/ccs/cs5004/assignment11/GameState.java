@@ -25,9 +25,9 @@ class GameState extends Observable {
     void guessed(char c) {
         // One letter key = one guess, unless a player had hit the same key before
         if (wins() || lost() || !Character.isLetter(c) || guessedLetters.get(c)) return;
-        guessesLeft--;
         guessedLetters.put(c, true);
         if (secretWordLetters.containsKey(c))   lettersAwayFromVictory--;
+        else                                    guessesLeft--;
         setChanged();
         notifyObservers();
     }
