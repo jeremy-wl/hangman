@@ -13,8 +13,8 @@ public class GameInfoPanel extends JPanel implements Observer {
     private GameState game;
     private List<GameInfoLabel> labels;
 
-    GameInfoPanel(GameState game, SecretWordLabel secretWordLabel,
-                  GuessesLeftLabel guessesLabel, GuessedLettersLabel letterLabel) {
+    GameInfoPanel(GameState game, GameInfoLabel secretWordLabel,
+                  GameInfoLabel guessesLabel, GameInfoLabel letterLabel) {
         this.game = game;
 
         labels = new ArrayList<>();
@@ -22,9 +22,11 @@ public class GameInfoPanel extends JPanel implements Observer {
         labels.add(guessesLabel);
         labels.add(letterLabel);
 
-        for (JLabel label : labels) {
-            this.add(label);
-        }
+        for (JLabel label : labels) {                     // Seems that the first alignment only
+            this.add(label);                              // works on plain text string, while the
+            label.setAlignmentX(JLabel.CENTER_ALIGNMENT); // second one works only for html based string.
+            label.setHorizontalAlignment(JLabel.CENTER);  // Don't know if there's better way to do this
+        }                                                 // except wrapping all of those in html
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

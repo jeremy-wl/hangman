@@ -11,8 +11,7 @@ public class GuessedLettersLabel extends GameInfoLabel {
     private static final String UNGUESSED_COLOR = "gray";
 
     public GuessedLettersLabel(GameState game) {
-        super();
-        setPreferredSize(new Dimension(300, 100));
+        setPreferredSize(new Dimension(500, 100));
         this.setText(htmlFlavoredText(game.getGuessedLetters()));
         setBackground(Color.white);
     }

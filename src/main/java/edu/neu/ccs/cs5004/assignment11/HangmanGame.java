@@ -28,15 +28,14 @@ public class HangmanGame {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
-        frame.setContentPane(Box.createVerticalBox());
         frame.setTitle("Hangman");
 
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyKeyEventDispatcher());
 
-        SecretWordLabel secretWordLabel = new SecretWordLabel(game);
-        GuessedLettersLabel guessedLettersLabel = new GuessedLettersLabel(game);
-        GuessesLeftLabel guessesLeftLabel = new GuessesLeftLabel(game);
+        GameInfoLabel secretWordLabel = new SecretWordLabel(game);
+        GameInfoLabel guessedLettersLabel = new GuessedLettersLabel(game);
+        GameInfoLabel guessesLeftLabel = new GuessesLeftLabel(game);
 
         JPanel gameInfoPanel = new GameInfoPanel(game, secretWordLabel, guessesLeftLabel, guessedLettersLabel);
 

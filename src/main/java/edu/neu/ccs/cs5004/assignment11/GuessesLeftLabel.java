@@ -7,8 +7,7 @@ import java.awt.*;
  */
 public class GuessesLeftLabel extends GameInfoLabel {
     public GuessesLeftLabel(GameState game) {
-        super();
-        setPreferredSize(new Dimension(300, 100));
+        setPreferredSize(new Dimension(500, 100));
 
         int guesses = game.getGuessesLeft();
         this.setText(guesses + " " + "guesses left");
