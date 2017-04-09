@@ -27,6 +27,7 @@ public class HangmanGame {
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(new FlowLayout());
         frame.setTitle("Hangman");
 

@@ -13,7 +13,6 @@ public class GuessedLettersLabel extends GameInfoLabel {
     public GuessedLettersLabel(GameState game) {
         setPreferredSize(new Dimension(500, 100));
         this.setText(htmlFlavoredText(game.getGuessedLetters()));
-        setBackground(Color.white);
     }
 
     @Override

@@ -8,15 +8,19 @@ import java.awt.*;
 public class GuessesLeftLabel extends GameInfoLabel {
     public GuessesLeftLabel(GameState game) {
         setPreferredSize(new Dimension(500, 100));
-
         int guesses = game.getGuessesLeft();
-        this.setText(guesses + " " + "guesses left");
-        setBackground(Color.white);
+        String message = String.format("%s guesses left", guesses);
+        this.setText(message);
     }
 
     @Override
     public void update(GameState game) {
         int guesses = game.getGuessesLeft();
-        this.setText(guesses + " " + "guesses left");
+        String message = String.format("%s guesses left", guesses);
+
+        if (game.wins())        message = String.format("You won with %s" + message);
+        else if (game.lost())   message = String.format("You lost! (%s)", game.getSecretWord());
+
+        this.setText(message);
     }
 }

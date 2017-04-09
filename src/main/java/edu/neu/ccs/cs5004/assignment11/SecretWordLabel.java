@@ -10,10 +10,9 @@ class SecretWordLabel extends GameInfoLabel {
 
     public SecretWordLabel(GameState game) {
         setPreferredSize(new Dimension(500, 100));
-        setBackground(Color.white);
 
         StringBuilder secretString = new StringBuilder();
-        for (int i = 0; i < game.getGuessesLeft(); i++) {
+        for (int i = 0; i < game.getSecretWord().length(); i++) {
             secretString.append('?');
         }
 

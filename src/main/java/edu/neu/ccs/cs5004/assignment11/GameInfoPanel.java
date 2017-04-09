@@ -1,6 +1,7 @@
 package edu.neu.ccs.cs5004.assignment11;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -28,6 +29,7 @@ public class GameInfoPanel extends JPanel implements Observer {
             label.setHorizontalAlignment(JLabel.CENTER);  // Don't know if there's better way to do this
         }                                                 // except wrapping all of those in html
 
+        this.setBackground(Color.WHITE);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         game.addObserver(this);
