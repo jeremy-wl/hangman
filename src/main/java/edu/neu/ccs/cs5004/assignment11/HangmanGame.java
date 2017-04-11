@@ -1,16 +1,21 @@
 package edu.neu.ccs.cs5004.assignment11;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.*;
 
 /**
  * Created by Jeremy on 4/7/17.
  */
 public class HangmanGame implements ActionListener {
     private GameState game;
+    private JFrame gameFrame;
 
     private class MyKeyEventDispatcher implements KeyEventDispatcher {
         @Override
@@ -27,14 +32,7 @@ public class HangmanGame implements ActionListener {
     private HangmanGame(String filePath) {
         // initialize the GameState model from a text file containing words (on each line)
         game = new GameState(filePath);
-
-        // setting up the frame
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(Color.WHITE);
-        frame.setLayout(new FlowLayout());
-        frame.setContentPane(Box.createVerticalBox());
-        frame.setTitle("Hangman");
+        List<Component> components = new ArrayList<>();
 
         // setting up key event dispatcher to get user keyboard inputs
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
@@ -42,24 +40,23 @@ public class HangmanGame implements ActionListener {
 
         // adding the panel for hangman image
         JPanel hangmanImage = new HangmanImage(game);
-        frame.add(hangmanImage);
+        components.add(hangmanImage);
 
         // adding an info panel with 3 labels inside
         GameInfoLabel secretWordLabel = new SecretWordLabel(game);
         GameInfoLabel guessedLettersLabel = new GuessedLettersLabel(game);
         GameInfoLabel guessesLeftLabel = new GuessesLeftLabel(game);
         JPanel gameInfoPanel = new GameInfoPanel(game, secretWordLabel, guessesLeftLabel, guessedLettersLabel);
-        frame.add(gameInfoPanel);
+        components.add(gameInfoPanel);
 
         // adding the new game button at the bottom to a panel and then to the frame
         /* TODO: extracting the JPanel out and putting its reference in frame.add() will
                  cause the button text render incorrectly, WHY? */
         JButton newGameBtn = new NewGameButton(this);
-        frame.add(new JPanel().add(newGameBtn));
+        components.add(new JPanel().add(newGameBtn));
 
-        frame.pack();
-        frame.setVisible(true);
-
+        // setting up the frame with all components (panels, buttons) added
+        gameFrame = new GameFrame(components);
     }
 
     @Override

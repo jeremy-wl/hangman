@@ -11,6 +11,7 @@ import java.util.Observer;
  */
 class HangmanImage extends JPanel implements Observer {
     private static final Dimension IMAGE_SIZE = new Dimension(400, 504);
+    private static final int OFFSET_FROM_TOP = 10;
 
     private GameState game;
     private HangmanImageLibrary imageLibrary;
@@ -32,6 +33,6 @@ class HangmanImage extends JPanel implements Observer {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image hangman = imageLibrary.getHangmanImage(game.getGuessesLeft());
-        g.drawImage(hangman, 0, 0, this.getWidth(), this.getHeight(), this);
+        g.drawImage(hangman, 0, OFFSET_FROM_TOP, this.getWidth(), this.getHeight(), this);
     }
 }
