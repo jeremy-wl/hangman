@@ -9,14 +9,14 @@ import java.util.Observer;
 /**
  * Created by Jeremy on 4/8/17.
  */
-class HangmanImage extends JPanel implements Observer {
+class PanelHangmanImage extends JPanel implements Observer {
     private static final Dimension IMAGE_SIZE = new Dimension(400, 504);
     private static final int OFFSET_FROM_TOP = 10;
 
     private GameState game;
     private HangmanImageLibrary imageLibrary;
 
-    HangmanImage(GameState game) {
+    PanelHangmanImage(GameState game) {
         this.game = game;
 
         this.imageLibrary = new HangmanImageLibrary();

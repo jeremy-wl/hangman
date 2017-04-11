@@ -1,7 +1,6 @@
 package edu.neu.ccs.cs5004.assignment11;
 
 import javax.swing.*;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
@@ -39,20 +38,20 @@ public class HangmanGame implements ActionListener {
         manager.addKeyEventDispatcher(new MyKeyEventDispatcher());
 
         // adding the panel for hangman image
-        JPanel hangmanImage = new HangmanImage(game);
+        JPanel hangmanImage = new PanelHangmanImage(game);
         components.add(hangmanImage);
 
         // adding an info panel with 3 labels inside
-        GameInfoLabel secretWordLabel = new SecretWordLabel(game);
-        GameInfoLabel guessedLettersLabel = new GuessedLettersLabel(game);
-        GameInfoLabel guessesLeftLabel = new GuessesLeftLabel(game);
-        JPanel gameInfoPanel = new GameInfoPanel(game, secretWordLabel, guessesLeftLabel, guessedLettersLabel);
+        LabelGameInfo secretWordLabel = new LabelSecretWord(game);
+        LabelGameInfo guessedLettersLabel = new LabelGuessedLetters(game);
+        LabelGameInfo guessesLeftLabel = new LabelGuessesLeft(game);
+        JPanel gameInfoPanel = new PanelGameInfo(game, secretWordLabel, guessesLeftLabel, guessedLettersLabel);
         components.add(gameInfoPanel);
 
         // adding the new game button at the bottom to a panel and then to the frame
         /* TODO: extracting the JPanel out and putting its reference in frame.add() will
                  cause the button text render incorrectly, WHY? */
-        JButton newGameBtn = new NewGameButton(this);
+        JButton newGameBtn = new ButtonNewGame(this);
         components.add(new JPanel().add(newGameBtn));
 
         // setting up the frame with all components (panels, buttons) added

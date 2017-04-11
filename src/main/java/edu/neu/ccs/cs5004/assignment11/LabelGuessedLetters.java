@@ -6,11 +6,11 @@ import java.util.Map;
 /**
  * Created by Jeremy on 4/8/17.
  */
-public class GuessedLettersLabel extends GameInfoLabel {
+class LabelGuessedLetters extends LabelGameInfo {
     private static final String GUESSED_COLOR = "blue";
     private static final String UNGUESSED_COLOR = "gray";
 
-    public GuessedLettersLabel(GameState game) {
+    LabelGuessedLetters(GameState game) {
         setPreferredSize(new Dimension(400, 20));
 
         this.setFont(new Font("Monospaced", Font.BOLD, 15));

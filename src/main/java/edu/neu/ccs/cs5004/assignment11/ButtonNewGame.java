@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 /**
  * Created by Jeremy on 4/11/17.
  */
-public class NewGameButton extends JButton {
-    public static final Dimension NEW_GAME_BTN_SIZE = new Dimension(40, 40);
-    public static final Font NEW_GAME_BTN_FONT = new Font("Arial", Font.PLAIN, 20);
+class ButtonNewGame extends JButton {
+    static final Dimension NEW_GAME_BTN_SIZE = new Dimension(40, 40);
+    static final Font NEW_GAME_BTN_FONT = new Font("Arial", Font.PLAIN, 20);
 
-    public NewGameButton(ActionListener listener) {
+    ButtonNewGame(ActionListener listener) {
         super("New");  // text showing on the button
         this.setActionCommand("New Game");
         this.addActionListener(listener);

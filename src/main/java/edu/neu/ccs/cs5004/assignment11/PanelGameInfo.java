@@ -10,12 +10,12 @@ import java.util.Observer;
 /**
  * Created by Jeremy on 4/8/17.
  */
-public class GameInfoPanel extends JPanel implements Observer {
+class PanelGameInfo extends JPanel implements Observer {
     private GameState game;
-    private List<GameInfoLabel> labels;
+    private List<LabelGameInfo> labels;
 
-    GameInfoPanel(GameState game, GameInfoLabel secretWordLabel,
-                  GameInfoLabel guessesLabel, GameInfoLabel letterLabel) {
+    PanelGameInfo(GameState game, LabelGameInfo secretWordLabel,
+                  LabelGameInfo guessesLabel, LabelGameInfo letterLabel) {
         this.game = game;
 
         labels = new ArrayList<>();
@@ -37,7 +37,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable obj, Object arg) {
-        for (GameInfoLabel label : labels) {
+        for (LabelGameInfo label : labels) {
             label.update(game);
         }
     }

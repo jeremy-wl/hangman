@@ -5,9 +5,9 @@ import java.awt.*;
 /**
  * Created by Jeremy on 4/8/17.
  */
-class SecretWordLabel extends GameInfoLabel {
+class LabelSecretWord extends LabelGameInfo {
 
-    public SecretWordLabel(GameState game) {
+    LabelSecretWord(GameState game) {
         setPreferredSize(new Dimension(400, 20));
         this.setFont(new Font("Monospaced", Font.BOLD, 15));
 

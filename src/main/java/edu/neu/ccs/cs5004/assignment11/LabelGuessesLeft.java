@@ -5,8 +5,8 @@ import java.awt.*;
 /**
  * Created by Jeremy on 4/8/17.
  */
-public class GuessesLeftLabel extends GameInfoLabel {
-    public GuessesLeftLabel(GameState game) {
+class LabelGuessesLeft extends LabelGameInfo {
+    LabelGuessesLeft(GameState game) {
         setPreferredSize(new Dimension(400, 20));
         this.setFont(new Font("Monospaced", Font.BOLD, 15));
 
