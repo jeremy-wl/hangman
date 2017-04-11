@@ -25,8 +25,10 @@ public class HangmanGame implements ActionListener {
     }
 
     private HangmanGame(String filePath) {
+        // initialize the GameState model from a text file containing words (on each line)
         game = new GameState(filePath);
 
+        // setting up the frame
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(Color.WHITE);
@@ -34,22 +36,26 @@ public class HangmanGame implements ActionListener {
         frame.setContentPane(Box.createVerticalBox());
         frame.setTitle("Hangman");
 
+        // setting up key event dispatcher to get user keyboard inputs
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyKeyEventDispatcher());
 
+        // adding the panel for hangman image
         JPanel hangmanImage = new HangmanImage(game);
         frame.add(hangmanImage);
 
+        // adding an info panel with 3 labels inside
         GameInfoLabel secretWordLabel = new SecretWordLabel(game);
         GameInfoLabel guessedLettersLabel = new GuessedLettersLabel(game);
         GameInfoLabel guessesLeftLabel = new GuessesLeftLabel(game);
         JPanel gameInfoPanel = new GameInfoPanel(game, secretWordLabel, guessesLeftLabel, guessedLettersLabel);
         frame.add(gameInfoPanel);
 
-        JButton newGameBtn = new JButton("New");
-        newGameBtn.setActionCommand("New Game");
-        newGameBtn.addActionListener(this);
-        frame.add(newGameBtn);
+        // adding the new game button at the bottom to a panel and then to the frame
+        /* TODO: extracting the JPanel out and putting its reference in frame.add() will
+                 cause the button text render incorrectly, WHY? */
+        JButton newGameBtn = new NewGameButton(this);
+        frame.add(new JPanel().add(newGameBtn));
 
         frame.pack();
         frame.setVisible(true);
