@@ -15,14 +15,21 @@ class PanelGameInfo extends JPanel implements Observer {
     private GameState game;
     private List<LabelGameInfo> labels;
 
+    /**
+     * Creates the game info panel given the current game state,
+     * secret word label, guesses left label and guessed letters label.
+     * @param game the current game state
+     * @param secretWordLabel the secret word label
+     * @param guessesLeftLabel the guesses left label
+     * @param guessedLettersLabel the guessed letters label
+     */
     PanelGameInfo(GameState game, LabelGameInfo secretWordLabel,
-                  LabelGameInfo guessesLabel, LabelGameInfo letterLabel) {
+                  LabelGameInfo guessesLeftLabel, LabelGameInfo guessedLettersLabel) {
         this.game = game;
-
         labels = new ArrayList<>();
         labels.add(secretWordLabel);
-        labels.add(guessesLabel);
-        labels.add(letterLabel);
+        labels.add(guessesLeftLabel);
+        labels.add(guessedLettersLabel);
 
         for (JLabel label : labels) {                     // Seems that the first alignment only
             this.add(label);                              // works on plain text string, while the

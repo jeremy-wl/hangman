@@ -9,5 +9,9 @@ import java.awt.*;
 abstract class LabelGameInfo extends JLabel {
     protected static final Font LABEL_TEXT_FONT = new Font(Font.MONOSPACED, Font.BOLD, 16);
 
+    /**
+     * Updates the label given the current game state.
+     * @param game the current game state
+     */
     protected abstract void update(GameState game);
 }

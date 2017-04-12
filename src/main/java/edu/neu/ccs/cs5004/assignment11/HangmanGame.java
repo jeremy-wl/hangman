@@ -16,6 +16,10 @@ public class HangmanGame implements ActionListener {
     private GameState game;
     private JFrame gameFrame;
 
+    /**
+     * Represents a key event dispatcher class that captures characters from
+     * the user keyboard input.
+     */
     private class MyKeyEventDispatcher implements KeyEventDispatcher {
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
@@ -28,6 +32,11 @@ public class HangmanGame implements ActionListener {
         }
     }
 
+    /**
+     * Given a file path, reads all words inside and
+     * initializes the Hangman game.
+     * @param filePath the path of the file that contains all possible words.
+     */
     private HangmanGame(String filePath) {
         // initialize the GameState model from a text file containing words (on each line)
         game = new GameState(filePath);

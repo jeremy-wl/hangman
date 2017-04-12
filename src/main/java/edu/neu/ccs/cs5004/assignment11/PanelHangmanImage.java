@@ -16,6 +16,10 @@ class PanelHangmanImage extends JPanel implements Observer {
     private GameState game;
     private HangmanImageLibrary imageLibrary;
 
+    /**
+     * Creates a JPanel where the hangman image is located.
+     * @param game the current game state
+     */
     PanelHangmanImage(GameState game) {
         this.game = game;
 

@@ -16,6 +16,9 @@ class HangmanImageLibrary {
     private static final String IMG_DIR = System.getProperty("user.dir")
             + "/src/main/java/edu/neu/ccs/cs5004/assignment11/images";
 
+    /**
+     * Creates a hangman image library where the hangman image map gets initialized.
+     */
     public HangmanImageLibrary() {
         hangmanImages = new HashMap<>();
         for (int i = 0; i <= GameState.MAX_GUESSES_ALLOWED; i++) {
@@ -28,6 +31,11 @@ class HangmanImageLibrary {
         }
     }
 
+    /**
+     * Given the number of guesses left, returns the corresponding hangman image in the map.
+     * @param guessesLeft the number of guesses left
+     * @return the corresponding hangman image in the map
+     */
     Image getHangmanImage(int guessesLeft) {
         return hangmanImages.get(guessesLeft);
     }

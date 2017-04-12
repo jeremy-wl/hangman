@@ -1,6 +1,5 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import java.awt.*;
 
 /**
  * Created by Jeremy on 4/8/17.
@@ -8,6 +7,10 @@ import java.awt.*;
 class LabelSecretWord extends LabelGameInfo {
     private static final char UNGUESSED_SIGN = '?';
 
+    /**
+     * Creates the secret word label given the current game state.
+     * @param game the current game state
+     */
     LabelSecretWord(GameState game) {
         this.setFont(LABEL_TEXT_FONT);
 

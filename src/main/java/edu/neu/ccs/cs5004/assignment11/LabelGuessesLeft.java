@@ -1,11 +1,15 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import java.awt.*;
 
 /**
  * Created by Jeremy on 4/8/17.
  */
 class LabelGuessesLeft extends LabelGameInfo {
+
+    /**
+     * Creates the guesses left label given the current game state.
+     * @param game the current game state
+     */
     LabelGuessesLeft(GameState game) {
         this.setFont(LABEL_TEXT_FONT);
 
