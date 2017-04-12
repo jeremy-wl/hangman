@@ -6,15 +6,14 @@ import java.awt.*;
  * Created by Jeremy on 4/8/17.
  */
 class LabelSecretWord extends LabelGameInfo {
+    private static final char UNGUESSED_SIGN = '?';
 
     LabelSecretWord(GameState game) {
-        setPreferredSize(new Dimension(400, 20));
-        this.setFont(new Font("Monospaced", Font.BOLD, 15));
-
+        this.setFont(LABEL_TEXT_FONT);
 
         StringBuilder secretString = new StringBuilder();
         for (int i = 0; i < game.getSecretWord().length(); i++) {
-            secretString.append('?');
+            secretString.append(UNGUESSED_SIGN);
         }
 
         this.setText(secretString.toString());
@@ -25,7 +24,7 @@ class LabelSecretWord extends LabelGameInfo {
         StringBuilder secretString = new StringBuilder();
 
         for (char wordLetter : game.getSecretWord().toCharArray()) {
-            char character = game.getGuessedLetters().get(wordLetter) ? wordLetter : '?';
+            char character = game.getGuessedLetters().get(wordLetter) ? wordLetter : UNGUESSED_SIGN;
             secretString.append(character);
         }
 

@@ -1,6 +1,7 @@
 package edu.neu.ccs.cs5004.assignment11;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ class PanelGameInfo extends JPanel implements Observer {
 
         this.setBackground(Color.WHITE);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0, 0, 10, 0), null));
 
         game.addObserver(this);
     }

@@ -1,6 +1,5 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import java.awt.*;
 import java.util.Map;
 
 /**
@@ -11,10 +10,7 @@ class LabelGuessedLetters extends LabelGameInfo {
     private static final String UNGUESSED_COLOR = "gray";
 
     LabelGuessedLetters(GameState game) {
-        setPreferredSize(new Dimension(400, 20));
-
-        this.setFont(new Font("Monospaced", Font.BOLD, 15));
-
+        this.setFont(LABEL_TEXT_FONT);
         this.setText(htmlFlavoredText(game.getGuessedLetters()));
     }
 
@@ -37,7 +33,6 @@ class LabelGuessedLetters extends LabelGameInfo {
         StringBuilder text = new StringBuilder();
         text.append("<html>");
         for (char c : GameState.ALL_POSSIBLE_LETTERS.toCharArray()) {
-            if (text.length() != 0) text.append(" ");
             if (!guessedWord.get(c)) {
                 text.append(wrapColoredTextWithHTMLTags(UNGUESSED_COLOR, c));
             } else {
