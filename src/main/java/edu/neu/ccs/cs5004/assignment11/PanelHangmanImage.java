@@ -1,10 +1,13 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /**
  * Created by Jeremy on 4/8/17.
@@ -30,14 +33,14 @@ class PanelHangmanImage extends JPanel implements Observer {
   }
 
   @Override
-  public void update(Observable o, Object arg) {
+  public void update(Observable obj, Object arg) {
     repaint();
   }
 
   @Override
-  public void paintComponent(Graphics g) {
-    super.paintComponent(g);
+  public void paintComponent(Graphics graphics) {
+    super.paintComponent(graphics);
     Image hangman = imageLibrary.getHangmanImage(game.getGuessesLeft());
-    g.drawImage(hangman, 0, 0, this.getWidth(), this.getHeight(), this);
+    graphics.drawImage(hangman, 0, 0, this.getWidth(), this.getHeight(), this);
   }
 }

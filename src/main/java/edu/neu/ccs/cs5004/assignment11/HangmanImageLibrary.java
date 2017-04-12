@@ -1,11 +1,11 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.imageio.ImageIO;
 
 /**
  * Created by Jeremy on 4/8/17.

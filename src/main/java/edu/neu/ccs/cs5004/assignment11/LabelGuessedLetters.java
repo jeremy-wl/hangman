@@ -32,9 +32,9 @@ class LabelGuessedLetters extends LabelGameInfo {
    * @param character a character
    *
    * @return a StringBuilder object containing the character surrounded by html font tag
-   * with the color attribute included.
+   *         with the color attribute included.
    */
-  private StringBuilder wrapColoredTextWithHTMLTags(String color, char character) {
+  private StringBuilder wrapColoredTextWithHtmlTags(String color, char character) {
     StringBuilder res = new StringBuilder();
     res.append("<font color=").append(color).append(">");
     res.append(character);
@@ -49,16 +49,16 @@ class LabelGuessedLetters extends LabelGameInfo {
    * @param guessedWord the map of guessed words
    *
    * @return the HTML code with each character surrounded by
-   * a font tag with the color attribute included.
+   *         a font tag with the color attribute included.
    */
   private String htmlFlavoredText(Map<Character, Boolean> guessedWord) {
     StringBuilder text = new StringBuilder();
     text.append("<html>");
     for (char c : GameState.ALL_POSSIBLE_LETTERS.toCharArray()) {
       if (!guessedWord.get(c)) {
-        text.append(wrapColoredTextWithHTMLTags(UNGUESSED_COLOR, c));
+        text.append(wrapColoredTextWithHtmlTags(UNGUESSED_COLOR, c));
       } else {
-        text.append(wrapColoredTextWithHTMLTags(GUESSED_COLOR, c));
+        text.append(wrapColoredTextWithHtmlTags(GUESSED_COLOR, c));
       }
     }
     text.append("</html>");

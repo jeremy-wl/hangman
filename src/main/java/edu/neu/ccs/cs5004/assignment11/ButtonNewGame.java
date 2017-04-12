@@ -1,8 +1,10 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  * Created by Jeremy on 4/11/17.

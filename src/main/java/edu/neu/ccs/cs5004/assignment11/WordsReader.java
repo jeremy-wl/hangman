@@ -1,6 +1,9 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,11 +26,11 @@ class WordsReader {
       String word;
       while ((word = inputFile.readLine()) != null) {
         word = word.trim();
-        if (word.equals("")) continue;
+        if (word.equals("")) {
+          continue;
+        }
         words.add(word);
       }
-    } catch (FileNotFoundException fnfe) {
-      System.out.println("The file was not found : " + fnfe.getMessage());
     } catch (IOException ioe) {
       System.out.println("Something went wrong! : " + ioe.getMessage());
     }

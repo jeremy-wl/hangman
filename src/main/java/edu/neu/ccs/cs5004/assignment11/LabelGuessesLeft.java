@@ -24,8 +24,11 @@ class LabelGuessesLeft extends LabelGameInfo {
     int guesses = game.getGuessesLeft();
     String message = String.format("%s guesses left", guesses);
 
-    if (game.wins()) message = String.format("You won with %s", message);
-    else if (game.lost()) message = String.format("You lost! (%s)", game.getSecretWord());
+    if (game.wins()) {
+      message = String.format("You won with %s", message);
+    } else if (game.lost()) {
+      message = String.format("You lost! (%s)", game.getSecretWord());
+    }
 
     this.setText(message);
   }

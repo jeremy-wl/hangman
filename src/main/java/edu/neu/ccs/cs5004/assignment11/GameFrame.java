@@ -1,8 +1,11 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.util.List;
+import javax.swing.Box;
+import javax.swing.JFrame;
 
 /**
  * Created by Jeremy on 4/11/17.

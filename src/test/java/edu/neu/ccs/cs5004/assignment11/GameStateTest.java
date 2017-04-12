@@ -30,12 +30,23 @@ public class GameStateTest {
   public void testGuessed() throws Exception {
     game.setSecretWord("hello");
     game.guessed('l');
+    game.guessed('l');
     game.guessed('p');
     game.guessed('h');
+    game.guessed('*');
+    game.guessed('a');
+    game.guessed('b');
+    game.guessed('c');
+    game.guessed('d');
 
     guessedLetters.put('h', true);
     guessedLetters.put('p', true);
     guessedLetters.put('l', true);
+    guessedLetters.put('a', true);
+    guessedLetters.put('b', true);
+    guessedLetters.put('c', true);
+    guessedLetters.put('d', true);
+    Assert.assertEquals("hello", game.getSecretWord());
     Assert.assertEquals(guessedLetters, game.getGuessedLetters());
   }
 }

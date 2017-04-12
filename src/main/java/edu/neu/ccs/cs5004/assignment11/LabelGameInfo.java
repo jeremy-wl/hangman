@@ -1,7 +1,7 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
+import javax.swing.JLabel;
 
 /**
  * Created by Jeremy on 4/8/17.

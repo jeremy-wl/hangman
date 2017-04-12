@@ -33,14 +33,19 @@ class GameState extends Observable {
   /**
    * Updates the current game state given a character input from the player.
    *
-   * @param c the character input from the player
+   * @param character the character input from the player
    */
-  void guessed(char c) {
+  void guessed(char character) {
     // One letter key = one guess, unless a player had hit the same key before
-    if (wins() || lost() || !Character.isLetter(c) || guessedLetters.get(c)) return;
-    guessedLetters.put(c, true);
-    if (secretWordLetters.containsKey(c)) lettersAwayFromVictory--;
-    else guessesLeft--;
+    if (wins() || lost() || !Character.isLetter(character) || guessedLetters.get(character)) {
+      return;
+    }
+    guessedLetters.put(character, true);
+    if (secretWordLetters.containsKey(character)) {
+      lettersAwayFromVictory--;
+    } else {
+      guessesLeft--;
+    }
     setChanged();
     notifyObservers();
   }
@@ -104,24 +109,13 @@ class GameState extends Observable {
   }
 
   /**
-   * Setter for property 'secretWord'. (Method created for unit test)
+   * Setter for property 'secretWord' (Method created for unit test).
    *
    * @param secretWord Value for property 'secretWord'.
    */
   public void setSecretWord(String secretWord) {
     this.secretWord = secretWord;
   }
-
-  /**
-   * Setter for property 'secretWordLetters'. (Method created for unit test)
-   *
-   * @param secretWordLetters Value for property 'secretWordLetters'.
-   */
-  public void setSecretWordLetters(Map<Character, Boolean> secretWordLetters) {
-    this.secretWordLetters = secretWordLetters;
-  }
-
-  /***************************** Private Methods *****************************/
 
   /**
    * Returns a random word from all possible words.
@@ -143,12 +137,12 @@ class GameState extends Observable {
    * @param str the input string
    *
    * @return a map where the keys are unique characters
-   * in the string, and values all initialized to false.
+   *         in the string, and values all initialized to false.
    */
   private Map<Character, Boolean> stringToCharMap(String str) {
     Map<Character, Boolean> res = new HashMap<>();
-    for (char c : str.toCharArray()) {
-      res.put(c, false);
+    for (char character : str.toCharArray()) {
+      res.put(character, false);
     }
     return res;
   }
