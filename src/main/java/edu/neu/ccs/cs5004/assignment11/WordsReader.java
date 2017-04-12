@@ -7,12 +7,12 @@ import java.util.Set;
 /**
  * Created by Jeremy on 4/8/17.
  */
-class FileReader {
+class WordsReader {
     /**
-     * Given a file path in which the file only contains english words (one word in each line),
+     * Given a file path in which the file only contains English words (one word in each line),
      * returns a list of string containing all words read from the file.
      *
-     * @param filePath the file path in which the file only contains english words
+     * @param filePath the file path in which the file only contains English words
      * @return a list of string containing all words read from the file
      */
     static String[] readWordsFromFile(String filePath) {

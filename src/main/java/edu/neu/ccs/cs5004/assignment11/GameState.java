@@ -22,7 +22,7 @@ class GameState extends Observable {
      * @param filePath the path of the text file that contains lines of words
      */
     GameState(String filePath) {
-        possibleWords = FileReader.readWordsFromFile(filePath);
+        possibleWords = WordsReader.readWordsFromFile(filePath);
         resetGame();
     }
 
@@ -92,8 +92,26 @@ class GameState extends Observable {
      *
      * @return Value for property 'secretWord'.
      */
-    public String getSecretWord() {
+    String getSecretWord() {
         return secretWord;
+    }
+
+    /**
+     * Setter for property 'secretWord'. (Method created for unit test)
+     *
+     * @param secretWord Value for property 'secretWord'.
+     */
+    public void setSecretWord(String secretWord) {
+        this.secretWord = secretWord;
+    }
+
+    /**
+     * Setter for property 'secretWordLetters'. (Method created for unit test)
+     *
+     * @param secretWordLetters Value for property 'secretWordLetters'.
+     */
+    public void setSecretWordLetters(Map<Character, Boolean> secretWordLetters) {
+        this.secretWordLetters = secretWordLetters;
     }
 
     /***************************** Private Methods *****************************/

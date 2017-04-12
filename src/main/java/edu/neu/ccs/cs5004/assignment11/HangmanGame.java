@@ -25,7 +25,6 @@ public class HangmanGame implements ActionListener {
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_TYPED) {
                 char pressedKey = e.getKeyChar();
-                System.out.printf("You pressed %s \n", pressedKey);  // TODO: remove this line
                 game.guessed(pressedKey);
             }
             return false;
@@ -79,6 +78,7 @@ public class HangmanGame implements ActionListener {
         String dir = System.getProperty("user.dir") +
                 "/src/main/java/edu/neu/ccs/cs5004/assignment11/";
         String fileName = "words.txt";
-        new HangmanGame(dir + fileName);
+
+        javax.swing.SwingUtilities.invokeLater(() -> new HangmanGame(dir + fileName));
     }
 }
