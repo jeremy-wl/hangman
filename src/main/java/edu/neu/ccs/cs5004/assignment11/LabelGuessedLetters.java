@@ -1,6 +1,6 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Jeremy on 4/8/17.
@@ -16,12 +16,12 @@ class LabelGuessedLetters extends LabelGameInfo {
    */
   LabelGuessedLetters(GameState game) {
     this.setFont(LABEL_TEXT_FONT);
-    this.setText(htmlFlavoredText(game.getGuessedLetters()));
+    this.setText(htmlFlavoredText(game.getUnguessedLetters()));
   }
 
   @Override
   public void update(GameState game) {
-    this.setText(htmlFlavoredText(game.getGuessedLetters()));
+    this.setText(htmlFlavoredText(game.getUnguessedLetters()));
   }
 
   /**
@@ -43,19 +43,19 @@ class LabelGuessedLetters extends LabelGameInfo {
   }
 
   /**
-   * Given a map of guessed words, returns the HTML code with each character surrounded by
+   * Given a set of unguessed letters, returns the HTML code with each character surrounded by
    * a font tag with the color attribute included.
    *
-   * @param guessedWord the map of guessed words
+   * @param unguessedLetters the set of unguessed letters
    *
    * @return the HTML code with each character surrounded by
    *         a font tag with the color attribute included.
    */
-  private String htmlFlavoredText(Map<Character, Boolean> guessedWord) {
+  private String htmlFlavoredText(Set<Character> unguessedLetters) {
     StringBuilder text = new StringBuilder();
     text.append("<html>");
     for (char c : GameState.ALL_POSSIBLE_LETTERS.toCharArray()) {
-      if (!guessedWord.get(c)) {
+      if (unguessedLetters.contains(c)) {
         text.append(wrapColoredTextWithHtmlTags(UNGUESSED_COLOR, c));
       } else {
         text.append(wrapColoredTextWithHtmlTags(GUESSED_COLOR, c));

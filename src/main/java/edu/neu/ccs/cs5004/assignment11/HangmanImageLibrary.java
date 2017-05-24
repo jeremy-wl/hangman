@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
  */
 class HangmanImageLibrary {
   private static final String IMG_DIR = System.getProperty("user.dir")
-          + "/src/main/java/edu/neu/ccs/cs5004/assignment11/images";
+                                      + "/src/main/java/edu/neu/ccs/cs5004/assignment11/images";
   private Map<Integer, Image> hangmanImages;
 
   /**

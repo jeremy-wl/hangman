@@ -28,7 +28,7 @@ class LabelSecretWord extends LabelGameInfo {
     StringBuilder secretString = new StringBuilder();
 
     for (char wordLetter : game.getSecretWord().toCharArray()) {
-      char character = game.getGuessedLetters().get(wordLetter) ? wordLetter : UNGUESSED_SIGN;
+      char character = game.getUnguessedLetters().contains(wordLetter) ? UNGUESSED_SIGN : wordLetter;
       secretString.append(character);
     }
 

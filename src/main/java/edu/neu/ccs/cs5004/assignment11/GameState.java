@@ -1,9 +1,6 @@
 package edu.neu.ccs.cs5004.assignment11;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Jeremy on 4/7/17.
@@ -12,13 +9,12 @@ class GameState extends Observable {
   static final String ALL_POSSIBLE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
   static final int MAX_GUESSES_ALLOWED = 6;
 
-  private Map<Character, Boolean> secretWordLetters;
-  private Map<Character, Boolean> guessedLetters;
+  private Set<Character> secretWordLetters;
+  private Set<Character> unguessedLetters;
   private int guessesLeft;
   private String[] possibleWords;
 
   private String secretWord;
-  private int lettersAwayFromVictory;
 
   /**
    * Initialize the game state.
@@ -36,13 +32,13 @@ class GameState extends Observable {
    * @param character the character input from the player
    */
   void guessed(char character) {
-    // One letter key = one guess, unless a player had hit the same key before
-    if (wins() || lost() || !Character.isLetter(character) || guessedLetters.get(character)) {
+
+    if (wins() || lost() || !unguessedLetters.contains(character)) {
       return;
     }
-    guessedLetters.put(character, true);
-    if (secretWordLetters.containsKey(character)) {
-      lettersAwayFromVictory--;
+    unguessedLetters.remove(character);
+    if (secretWordLetters.contains(character)) {
+      secretWordLetters.remove(character);
     } else {
       guessesLeft--;
     }
@@ -55,10 +51,9 @@ class GameState extends Observable {
    */
   void resetGame() {
     secretWord = randomWord(possibleWords);
-    secretWordLetters = stringToCharMap(secretWord);
-    guessedLetters = stringToCharMap(ALL_POSSIBLE_LETTERS);
+    secretWordLetters = stringToCharSet(secretWord);
+    unguessedLetters  = stringToCharSet(ALL_POSSIBLE_LETTERS);
     guessesLeft = MAX_GUESSES_ALLOWED;
-    lettersAwayFromVictory = secretWordLetters.size();
     setChanged();
     notifyObservers();
   }
@@ -69,7 +64,7 @@ class GameState extends Observable {
    * @return true if the player wins the game, false otherwise
    */
   boolean wins() {
-    return lettersAwayFromVictory == 0;
+    return secretWordLetters.isEmpty();
   }
 
   /**
@@ -82,12 +77,21 @@ class GameState extends Observable {
   }
 
   /**
-   * Getter for property 'guessedLetters'.
+   * Getter for property 'unguessedLetters'.
    *
-   * @return Value for property 'guessedLetters'.
+   * @return Value for property 'unguessedLetters'.
    */
-  Map<Character, Boolean> getGuessedLetters() {
-    return guessedLetters;
+  Set<Character> getUnguessedLetters() {
+    return unguessedLetters;
+  }
+
+  /**
+   * Getter for property 'secretWordLetters'.
+   *
+   * @return Value for property 'secretWordLetters'.
+   */
+  Set<Character> getSecretWordLetters() {
+    return secretWordLetters;
   }
 
   /**
@@ -121,7 +125,6 @@ class GameState extends Observable {
    * Returns a random word from all possible words.
    *
    * @param possibleWords the list of possible words read from the input file
-   *
    * @return a random word from all possible words
    */
   private String randomWord(String[] possibleWords) {
@@ -131,18 +134,15 @@ class GameState extends Observable {
   }
 
   /**
-   * Converts the string to a map where the keys are unique characters
-   * in the string, and values all initialized to false.
+   * Converts the string to a set of unique characters.
    *
    * @param str the input string
-   *
-   * @return a map where the keys are unique characters
-   *         in the string, and values all initialized to false.
+   * @return a set of unique characters
    */
-  private Map<Character, Boolean> stringToCharMap(String str) {
-    Map<Character, Boolean> res = new HashMap<>();
+  private Set<Character> stringToCharSet(String str) {
+    Set<Character> res = new HashSet<>();
     for (char character : str.toCharArray()) {
-      res.put(character, false);
+      res.add(character);
     }
     return res;
   }

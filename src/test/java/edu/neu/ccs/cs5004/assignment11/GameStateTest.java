@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Jeremy on 4/11/17.
@@ -15,38 +15,26 @@ public class GameStateTest {
           "/src/main/java/edu/neu/ccs/cs5004/assignment11/";
   private static final String fileName = "words.txt";
   private GameState game;
-  private Map<Character, Boolean> guessedLetters;
+  private Set<Character> unguessedLetters;
 
   @Before
   public void setUp() throws Exception {
     game = new GameState(dir + fileName);
-    guessedLetters = new HashMap<>();
+    unguessedLetters = new HashSet<>();
     for (char c = 'a'; c <= 'z'; c++) {
-      guessedLetters.put(c, false);
+      unguessedLetters.add(c);
     }
   }
 
   @Test
   public void testGuessed() throws Exception {
     game.setSecretWord("hello");
-    game.guessed('l');
-    game.guessed('l');
-    game.guessed('p');
-    game.guessed('h');
     game.guessed('*');
-    game.guessed('a');
-    game.guessed('b');
-    game.guessed('c');
-    game.guessed('d');
-
-    guessedLetters.put('h', true);
-    guessedLetters.put('p', true);
-    guessedLetters.put('l', true);
-    guessedLetters.put('a', true);
-    guessedLetters.put('b', true);
-    guessedLetters.put('c', true);
-    guessedLetters.put('d', true);
+    Assert.assertTrue(game.getSecretWordLetters().contains('l'));
+    Assert.assertTrue(game.getUnguessedLetters().contains('l'));
+    game.guessed('l');
+    Assert.assertFalse(game.getUnguessedLetters().contains('l'));
+    Assert.assertFalse(game.getSecretWordLetters().contains('l'));
     Assert.assertEquals("hello", game.getSecretWord());
-    Assert.assertEquals(guessedLetters, game.getGuessedLetters());
   }
 }
